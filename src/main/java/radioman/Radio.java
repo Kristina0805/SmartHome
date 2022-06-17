@@ -1,7 +1,7 @@
 package radioman;
 
 public class Radio {
-    private int RadioStationNumber;
+    private int radioStationNumber;
     private int soundVolume;
 
     public void setRadioStationNumber(int RadioStationNumber) {
@@ -9,31 +9,35 @@ public class Radio {
             return;
         }
         if (RadioStationNumber > 9) {
+            this.radioStationNumber = 9;
+
             return;
+
         }
-        this.RadioStationNumber = RadioStationNumber;
+        this.radioStationNumber = RadioStationNumber;
     }
 
     public int getRadioStationNumber() {
 
-        return RadioStationNumber;
+        return radioStationNumber;
     }
 
     public void NextStation() {
-        if (RadioStationNumber < 9) {
-            RadioStationNumber = RadioStationNumber + 1;
-        } else if (RadioStationNumber >= 9) {
-            RadioStationNumber = 0;
+        if (radioStationNumber < 9) {
+            radioStationNumber = radioStationNumber + 1;
+        } else {
+            radioStationNumber = 0;
         }
+        setRadioStationNumber(radioStationNumber);
     }
 
     public void prevStation() {
-        if (RadioStationNumber == 0) {
-            RadioStationNumber = 9;
-        } else if (RadioStationNumber > 0) {
-            RadioStationNumber = RadioStationNumber - 1;
+        if (radioStationNumber == 0) {
+            radioStationNumber = 9;
+        } else  {
+            radioStationNumber = radioStationNumber - 1;
         }
-        setRadioStationNumber(RadioStationNumber);
+        setRadioStationNumber(radioStationNumber);
     }
 
 
@@ -54,7 +58,7 @@ public class Radio {
     public void maxVolume() {
         if (soundVolume < 10) {
             soundVolume = soundVolume + 1;
-        } else if (soundVolume == 10) {
+        } else  {
             soundVolume = 0;
         }
         setSoundVolume(soundVolume);
@@ -62,7 +66,7 @@ public class Radio {
     public void minVolume(){
         if (soundVolume == 0){
             soundVolume = 0;
-        }else if (soundVolume < 10){
+        }else {
             soundVolume = soundVolume - 1;
         }
         setSoundVolume(soundVolume);
