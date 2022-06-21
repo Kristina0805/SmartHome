@@ -44,7 +44,7 @@ public class RadioTest {
     void nextStation() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(7);
-        radio.NextStation();
+        radio.nextStation();
         int actual = radio.getRadioStationNumber();
         int expected = 8;
 
@@ -55,33 +55,34 @@ public class RadioTest {
     void truthNextStation() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(9);
-        radio.NextStation();
+        radio.nextStation();
         int actual = radio.getRadioStationNumber();
         int expected = 0;
 
         assertEquals(expected, actual);
     }
+
     @Test
     void moreNextStation() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(10);
-        radio.NextStation();
+        radio.nextStation();
         int actual = radio.getRadioStationNumber();
         int expected = 0;
 
         assertEquals(expected, actual);
     }
+
     @Test
     void equallyNextStation() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(9);
-        radio.NextStation();
+        radio.nextStation();
         int actual = radio.getRadioStationNumber();
         int expected = 0;
 
         assertEquals(expected, actual);
     }
-
 
 
     // тест для предыдущей
@@ -107,7 +108,8 @@ public class RadioTest {
         assertEquals(expected, actual);
 
     }
-// Тест для звука
+
+    // Тест для звука
     @Test
     void soundVolume() {
         Radio radio = new Radio();
@@ -127,8 +129,9 @@ public class RadioTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
-    void moreSoundVolume(){
+    void moreSoundVolume() {
         Radio radio = new Radio();
         radio.setSoundVolume(11);
         int actual = radio.getSoundVolume();
@@ -137,6 +140,7 @@ public class RadioTest {
         assertEquals(expected, actual);
 
     }
+
     // Тест для макисмума
     @Test
     void incorrectMaxVolume() {
@@ -159,6 +163,7 @@ public class RadioTest {
 
         assertEquals(expected, actual);
     }
+
     // Тест для минимума
     @Test
     void minVolume() {
@@ -170,6 +175,7 @@ public class RadioTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     void truthMinVolume() {
         Radio radio = new Radio();
@@ -178,7 +184,7 @@ public class RadioTest {
         int actual = radio.getSoundVolume();
         int expected = 6;
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 }
 
