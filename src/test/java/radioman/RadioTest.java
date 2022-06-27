@@ -11,102 +11,75 @@ public class RadioTest {
     // тест для кол-ва радиостанций
     @Test
     void radioStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(9);
         radio.setRadioStationNumber(-1);
-        int actual = radio.getRadioStationNumber();
-        int expected = 0;
 
-        assertEquals(expected, actual);
+        assertEquals(0,radio.getRadioStationNumber() );
     }
 
-    @Test
-    void incorrectRadioStation() {
-        Radio radio = new Radio();
-        radio.setRadioStationNumber(10);
-        int actual = radio.getRadioStationNumber();
-        int expected = 9;
-
-        assertEquals(expected, actual);
-    }
 
     @Test
     void truthRadioStation() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(7);
-        int actual = radio.getRadioStationNumber();
-        int expected = 7;
 
-        assertEquals(expected, actual);
+        assertEquals(7, radio.getRadioStationNumber());
     }
 
     // тест для кнопки следующая
     @Test
-    void nextStation() {
-        Radio radio = new Radio();
+    void moreNextStation() {
+        Radio radio = new Radio(9);
+        radio.setRadioStationNumber(11);
+        radio.nextStation();
+
+        assertEquals(0, radio.getRadioStationNumber());
+    }
+
+    @Test
+    void equalsNextStation() {
+        Radio radio = new Radio(9);
+        radio.setRadioStationNumber(9);
+        radio.nextStation();
+
+        assertEquals(0, radio.getRadioStationNumber());
+    }
+
+    @Test
+    void eNextStation() {
+        Radio radio = new Radio(9);
         radio.setRadioStationNumber(7);
         radio.nextStation();
-        int actual = radio.getRadioStationNumber();
-        int expected = 8;
 
-        assertEquals(expected, actual);
+        assertEquals(8, radio.getRadioStationNumber());
     }
-
-    @Test
-    void truthNextStation() {
-        Radio radio = new Radio();
-        radio.setRadioStationNumber(9);
-        radio.nextStation();
-        int actual = radio.getRadioStationNumber();
-        int expected = 0;
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void moreNextStation() {
-        Radio radio = new Radio();
-        radio.setRadioStationNumber(10);
-        radio.nextStation();
-        int actual = radio.getRadioStationNumber();
-        int expected = 0;
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void equallyNextStation() {
-        Radio radio = new Radio();
-        radio.setRadioStationNumber(9);
-        radio.nextStation();
-        int actual = radio.getRadioStationNumber();
-        int expected = 0;
-
-        assertEquals(expected, actual);
-    }
-
 
     // тест для предыдущей
-    @Test
-    void prevStation() {
-        Radio radio = new Radio();
-        radio.setRadioStationNumber(9);
-        radio.prevStation();
-        int actual = radio.getRadioStationNumber();
-        int expected = 8;
-
-        assertEquals(expected, actual);
-    }
-
     @Test
     void truthPrevStation() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(0);
         radio.prevStation();
-        int actual = radio.getRadioStationNumber();
-        int expected = 9;
 
-        assertEquals(expected, actual);
+        assertEquals(9, radio.getRadioStationNumber());
+    }
 
+    @Test
+    void tPrevStation() {
+        Radio radio = new Radio();
+        radio.setRadioStationNumber(-1);
+        radio.prevStation();
+
+        assertEquals(9, radio.getRadioStationNumber());
+    }
+
+    @Test
+    void sPrevStation() {
+        Radio radio = new Radio();
+        radio.setRadioStationNumber(9);
+        radio.prevStation();
+
+        assertEquals(8, radio.getRadioStationNumber());
     }
 
     // Тест для звука
@@ -114,55 +87,46 @@ public class RadioTest {
     void soundVolume() {
         Radio radio = new Radio();
         radio.setSoundVolume(9);
-        int actual = radio.getSoundVolume();
-        int expected = 9;
 
-        assertEquals(expected, actual);
+        assertEquals(9, radio.getSoundVolume());
     }
 
     @Test
     void incorrectSoundVolume() {
         Radio radio = new Radio();
         radio.setSoundVolume(-1);
-        int actual = radio.getSoundVolume();
-        int expected = 0;
 
-        assertEquals(expected, actual);
+        assertEquals(0, radio.getSoundVolume());
     }
 
     @Test
     void moreSoundVolume() {
         Radio radio = new Radio();
-        radio.setSoundVolume(11);
-        int actual = radio.getSoundVolume();
-        int expected = 0;
+        radio.setSoundVolume(101);
 
-        assertEquals(expected, actual);
-
+        assertEquals(0, radio.getSoundVolume());
     }
 
     // Тест для макисмума
-    @Test
-    void incorrectMaxVolume() {
-        Radio radio = new Radio();
-        radio.setSoundVolume(10);
-        radio.maxVolume();
-        int actual = radio.getSoundVolume();
-        int expected = 0;
-
-        assertEquals(expected, actual);
-    }
 
     @Test
     void maxVolume() {
         Radio radio = new Radio();
-        radio.setSoundVolume(7);
+        radio.setSoundVolume(100);
         radio.maxVolume();
-        int actual = radio.getSoundVolume();
-        int expected = 8;
 
-        assertEquals(expected, actual);
+        assertEquals(0,radio.getMinSoundVolume());
     }
+
+    @Test
+    void incorrectMaxVolume() {
+        Radio radio = new Radio();
+        radio.setSoundVolume(101);
+        radio.maxVolume();
+
+        assertEquals(0, radio.getMinSoundVolume());
+    }
+
 
     // Тест для минимума
     @Test
@@ -170,21 +134,26 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setSoundVolume(0);
         radio.minVolume();
-        int actual = radio.getSoundVolume();
-        int expected = 0;
 
-        assertEquals(expected, actual);
+        assertEquals(0, radio.getMinSoundVolume());
     }
 
     @Test
-    void truthMinVolume() {
+    void incorrectMinVolume() {
         Radio radio = new Radio();
-        radio.setSoundVolume(7);
+        radio.setSoundVolume(-1);
         radio.minVolume();
-        int actual = radio.getSoundVolume();
-        int expected = 6;
 
-        assertEquals(expected, actual);
+        assertEquals(0, radio.getMinSoundVolume());
+    }
+
+    @Test
+    void inMinVolume() {
+        Radio radio = new Radio();
+        radio.setSoundVolume(1);
+        radio.minVolume();
+
+        assertEquals(0, radio.getMinSoundVolume());
     }
 }
 
