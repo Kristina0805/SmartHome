@@ -2,50 +2,61 @@ package radioman;
 
 public class Radio {
     private int radioStationNumber;
-    private int soundVolume;
+    private int amountStation ;
+    private int minSoundVolume = 0;
+    private int maxSoundVolume = 100;
+    private int soundVolume = minSoundVolume;
+
+    public Radio() {
+        amountStation = 9;
+    }
+
+    public Radio(int stationCount) {
+        amountStation = stationCount - 1;
+    }
+
+    public int getMinSoundVolume() {
+        return minSoundVolume;
+    }
 
     public void setRadioStationNumber(int radioStationNumber) {
         if (radioStationNumber < 0) {
             return;
         }
-        if (radioStationNumber > 9) {
-            this.radioStationNumber = 9;
-
+        if (radioStationNumber > amountStation) {
+            this.radioStationNumber = amountStation;
             return;
-
         }
         this.radioStationNumber = radioStationNumber;
     }
 
     public int getRadioStationNumber() {
-
         return radioStationNumber;
     }
 
     public void nextStation() {
-        if (radioStationNumber < 9) {
-            radioStationNumber = radioStationNumber + 1;
-        } else {
+        if (radioStationNumber == amountStation) {
             radioStationNumber = 0;
+        }  else {
+            radioStationNumber++;
         }
         setRadioStationNumber(radioStationNumber);
     }
 
     public void prevStation() {
         if (radioStationNumber == 0) {
-            radioStationNumber = 9;
+            radioStationNumber = amountStation;
         } else {
-            radioStationNumber = radioStationNumber - 1;
+            radioStationNumber--;
         }
         setRadioStationNumber(radioStationNumber);
     }
 
-
     public void setSoundVolume(int newSoundVolume) {
-        if (newSoundVolume < 0) {
+        if (newSoundVolume < minSoundVolume) {
             return;
         }
-        if (newSoundVolume > 10) {
+        if (newSoundVolume > maxSoundVolume) {
             return;
         }
         this.soundVolume = newSoundVolume;
@@ -56,19 +67,15 @@ public class Radio {
     }
 
     public void maxVolume() {
-        if (soundVolume < 10) {
-            soundVolume = soundVolume + 1;
-        } else {
-            soundVolume = 0;
+        if (soundVolume >= maxSoundVolume) {
+            soundVolume = minSoundVolume;
         }
         setSoundVolume(soundVolume);
     }
 
     public void minVolume() {
-        if (soundVolume == 0) {
-            soundVolume = 0;
-        } else {
-            soundVolume = soundVolume - 1;
+        if (soundVolume <= minSoundVolume) {
+            soundVolume = minSoundVolume;
         }
         setSoundVolume(soundVolume);
     }
